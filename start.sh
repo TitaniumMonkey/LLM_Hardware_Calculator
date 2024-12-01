@@ -3,9 +3,6 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
-# Navigate to the repository directory
-cd "$(dirname "$0")"
-
 # Build the Docker image
 docker build -t llm-calculator-app .
 
