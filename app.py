@@ -184,13 +184,26 @@ def main():
     if 'custom_model_size' not in st.session_state:
         st.session_state.custom_model_size = None
 
-    # Inject custom CSS to increase font size
+    # Inject custom CSS to increase font size and style the button
     st.markdown(
         """
         <style>
         /* Increase the base font size */
         html, body, [class*="css"]  {
             font-size: 1.2rem;  /* Increase font size by 20% */
+        }
+        /* Style the Calculate Requirements button to be blue */
+        .stButton > button {
+            background-color: #1E90FF !important;  /* DodgerBlue */
+            color: white !important;
+        }
+        .stButton > button:hover {
+            background-color: #1C86EE !important;
+            color: white !important;
+        }
+        .stButton > button:active {
+            background-color: #1874CD !important;
+            color: white !important;
         }
         /* Optional: Further styling can be added here if needed */
         </style>
