@@ -26,7 +26,7 @@ LLM-Hardware-Calculator/
 │   ├── requirements.txt      # Python dependencies
 ├── scripts/                  # Utility scripts for development and deployment
 │   ├── setup_llm_app.sh      # Script to set up local development environment
-│   ├── build_and_push.sh     # Script to build and push Docker images
+│   ├── start.sh              # Script to start the Docker container
 ```
 
 ---
@@ -48,9 +48,10 @@ cd LLM-Hardware-Calculator
 ```
 
 ### 2. Set Up Environment Variables
-Create a `.env` file in the root directory and add the following:
-```
-HUGGING_FACE_TOKEN=your_hugging_face_api_token
+After cloning the repository, run the following command to enter your Hugging Face API key:
+```bash
+read -p "Enter your Hugging Face API key: " HUGGING_FACE_TOKEN
+echo "HUGGING_FACE_TOKEN=$HUGGING_FACE_TOKEN" > .env
 ```
 
 ### 3. Build and Run the Docker Container
@@ -62,11 +63,11 @@ docker build -t llm-calculator-app .
 
 #### Run the Container
 ```bash
-docker run -d -p 8501:8501 --env-file .env llm-calculator-app
+docker run -d -p 8051:8051 --env-file .env llm-calculator-app
 ```
 
 Once the container is running, the application will be available at:
-[http://localhost:8501](http://localhost:8501)
+[http://localhost:8051](http://localhost:8051)
 
 ---
 
@@ -84,24 +85,10 @@ For development without Docker, install dependencies and run the app locally:
     ```
 
 ### Update Python Dependencies
-To update or add new dependencies, modify `app/requirements.txt`:
+To update or add new dependencies, modify `app/requirements.txt` and then reinstall:
+```bash
+pip install -r app/requirements.txt
 ```
-streamlit
-huggingface_hub
-python-dotenv
-```
-Then, rebuild the Docker image or reinstall dependencies locally.
-
----
-
-## Deployment to Docker Hub (Optional)
-
-If you want to push your Docker image to Docker Hub:
-1. Update the `DOCKER_USERNAME` in `scripts/build_and_push.sh`.
-2. Run the script:
-    ```bash
-    bash scripts/build_and_push.sh
-    ```
 
 ---
 
@@ -138,7 +125,7 @@ If you want to push your Docker image to Docker Hub:
 
 ### Common Issues
 - **Docker Build Fails**: Ensure Docker is installed and running, and the `.env` file exists with the correct API token.
-- **App Not Accessible**: Check if the correct port (8501) is exposed or modify the port in the `docker run` command.
+- **App Not Accessible**: Check if the correct port (8051) is exposed or modify the port in the `docker run` command.
 
 ---
 
@@ -151,5 +138,4 @@ Contributions are welcome! Fork the repository, make your changes, and submit a 
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
-```
 

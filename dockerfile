@@ -8,16 +8,20 @@ ENV PYTHONUNBUFFERED=1
 # Set the working directory
 WORKDIR /app
 
-# Copy the setup script and app.py to the working directory
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Copy necessary files to the working directory
 COPY scripts/setup_llm_app.sh ./
 COPY app/app.py ./
 
 # Make the setup script executable and run it to install dependencies
-RUN chmod +x setup_llm_app.sh && ./setup_llm_app.sh || echo "Setup failed, continuing without dependencies"
+RUN chmod +x setup_llm_app.sh && ./setup_llm_app.sh
 
 # Expose port 8501 for Streamlit
 EXPOSE 8501
 
-# Set the command to run the Streamlit app with CORS and XSRF protections disabled
+# Set the command to run the Streamlit app
 CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0", "--server.enableCORS=false", "--server.enableXsrfProtection=false"]
-
