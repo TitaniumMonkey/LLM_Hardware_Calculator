@@ -23,7 +23,6 @@ LLM-Hardware-Calculator/
 ├── .gitignore                # Files and folders to ignore in Git
 ├── app/                      # Main application code
 │   ├── app.py                # Streamlit application
-│   ├── requirements.txt      # Python dependencies
 ├── scripts/                  # Utility scripts for development and deployment
 │   ├── setup_llm_app.sh      # Script to set up local development environment
 │   ├── start.sh              # Script to start the Docker container
@@ -41,54 +40,44 @@ LLM-Hardware-Calculator/
 
 ## Getting Started
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/TitaniumMonkey/LLM_Hardware_Calculator.git
-cd LLM-Hardware-Calculator
-```
+# LLM Hardware Calculator Setup Guide
 
-### 2. Set Up Environment Variables
-After cloning the repository, run the following command to enter your Hugging Face API key:
-```bash
-read -p "Enter your Hugging Face API key: " HUGGING_FACE_TOKEN
-echo "HUGGING_FACE_TOKEN=$HUGGING_FACE_TOKEN" > .env
-```
+### Prerequisites
+- Ensure you have Git, Docker, and Bash installed on your system.
+- Obtain a Hugging Face API key.
 
-### 3. Build and Run the Docker Container
+---
 
-#### Build the Docker Image
-```bash
-docker build -t llm-calculator-app .
-```
+### 1. Clone or Update the Repository
 
-#### Run the Container
-```bash
-docker run -d -p 8051:8051 --env-file .env llm-calculator-app
-```
+Use the following script to clone the repository if it doesn't exist, or update it if it already has been cloned:
+
+#!/bin/bash
+
+# Clone the repository if it doesn't already exist, otherwise update it
+if [ ! -d "LLM_Hardware_Calculator" ]; then
+  echo "Cloning the repository..."
+  git clone https://github.com/TitaniumMonkey/LLM_Hardware_Calculator.git
+  cd LLM_Hardware_Calculator
+else
+  echo "Updating the repository..."
+  cd LLM_Hardware_Calculator
+  git pull origin main
+fi
+
+# Wait for 2 seconds before running the start script
+echo "Preparing to run the start script..."
+sleep 2
+
+# Run the start script
+chmod +x ./start.sh
+./start.sh
+
+---
 
 Once the container is running, the application will be available at:
 [http://localhost:8051](http://localhost:8051)
 
----
-
-## Development and Testing
-
-### Set Up Local Development Environment
-For development without Docker, install dependencies and run the app locally:
-1. Install Python dependencies:
-    ```bash
-    bash scripts/setup_llm_app.sh
-    ```
-2. Run the application:
-    ```bash
-    streamlit run app/app.py
-    ```
-
-### Update Python Dependencies
-To update or add new dependencies, modify `app/requirements.txt` and then reinstall:
-```bash
-pip install -r app/requirements.txt
-```
 
 ---
 
