@@ -68,7 +68,7 @@ LLM_Hardware_Calculator/
 - **Hugging Face API**: Fetching model metadata.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the Apache License - see the LICENSE file for details.
 
 ## Acknowledgements
 - [Hugging Face](https://huggingface.co/) for providing APIs to fetch model metadata.
