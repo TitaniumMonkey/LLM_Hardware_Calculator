@@ -32,5 +32,4 @@ fi
 docker build -t llm-calculator-app .
 
 # Run the Docker container locally, exposing it on port 8051
-docker run --name llm-calculator-container -p 8051:8051 --env-file .env llm-calculator-app
-
+docker run -p 8051:8051 llm-calculator-app
