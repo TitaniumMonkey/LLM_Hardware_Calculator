@@ -52,6 +52,7 @@ LLM-Hardware-Calculator/
 
 Use the following script to clone the repository if it doesn't exist, or update it if it already has been cloned:
 
+```bash
 #!/bin/bash
 
 # Clone the repository if it doesn't already exist, otherwise update it
