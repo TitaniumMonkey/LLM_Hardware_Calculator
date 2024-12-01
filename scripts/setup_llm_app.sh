@@ -14,3 +14,5 @@ pip install --no-cache-dir --upgrade pip
 # Install Python dependencies directly
 pip install --no-cache-dir streamlit huggingface_hub python-dotenv
 
+# Install Python dependencies directly from requirements.txt
+pip install --no-cache-dir -r app/requirements.txt
