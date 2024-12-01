@@ -40,8 +40,6 @@ LLM-Hardware-Calculator/
 
 ## Getting Started
 
-# LLM Hardware Calculator Setup Guide
-
 ### Prerequisites
 - Ensure you have Git, Docker, and Bash installed on your system.
 - Obtain a Hugging Face API key.
@@ -73,12 +71,44 @@ sleep 2
 # Run the start script
 chmod +x ./start.sh
 ./start.sh
+```
+
+Alternatively, you can clone the repository manually:
+
+```bash
+git clone https://github.com/TitaniumMonkey/LLM_Hardware_Calculator.git
+cd LLM_Hardware_Calculator
+```
+
+---
+
+### 2. Set Up Environment Variables
+
+After cloning the repository, set up your Hugging Face API key:
+
+```bash
+read -p "Enter your Hugging Face API key: " HUGGING_FACE_TOKEN
+echo "HUGGING_FACE_TOKEN=$HUGGING_FACE_TOKEN" > .env
+```
+
+---
+
+### 3. Build and Run the Docker Container
+
+#### Build the Docker Image
+```bash
+docker build -t llm-calculator-app .
+```
+
+#### Run the Container
+```bash
+docker run -d -p 8051:8051 --env-file .env llm-calculator-app
+```
 
 ---
 
 Once the container is running, the application will be available at:
 [http://localhost:8051](http://localhost:8051)
-
 
 ---
 
