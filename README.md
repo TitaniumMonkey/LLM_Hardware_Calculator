@@ -18,11 +18,10 @@ The **LLM Hardware Calculator** is a web application designed to calculate hardw
 ```
 LLM-Hardware-Calculator/
 ├── Dockerfile                # Docker build configuration
+├── app.py                    # Streamlit application
 ├── README.md                 # Project documentation
 ├── .env                      # Environment variables (e.g., API tokens)
 ├── .gitignore                # Files and folders to ignore in Git
-├── app/                      # Main application code
-│   ├── app.py                # Streamlit application
 ├── scripts/                  # Utility scripts for development and deployment
 │   ├── setup_llm_app.sh      # Script to set up local development environment
 │   ├── start.sh              # Script to start the Docker container
