@@ -1,7 +1,7 @@
 # Use the official Python slim image
 FROM python:3.9-slim
 
-# Prevent Python from writing pyc files to disc and enable stdout/stderr flushing
+# Prevent Python from writing pyc files to disk and enable stdout/stderr flushing
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Copy necessary files to the working directory
 COPY scripts/setup_llm_app.sh ./
-COPY app/app.py ./
+COPY app.py ./
 
 # Make the setup script executable and run it to install dependencies
 RUN chmod +x setup_llm_app.sh && ./setup_llm_app.sh
