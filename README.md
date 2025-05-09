@@ -2,7 +2,6 @@
 
 A modern web application that helps users calculate hardware requirements for running Large Language Models (LLMs) from Hugging Face. This tool provides accurate VRAM and storage requirements based on model parameters and quantization type.
 
-![LLM Hardware Calculator](https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)
 
 ## Features
 
