@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ModelInput from './ModelInput';
 import ManualInput from './ManualInput';
 import ModelInfo from './ModelInfo';
@@ -13,6 +13,14 @@ const Calculator = () => {
   const [modelData, setModelData] = useState<ModelData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [hfApiKey, setHfApiKey] = useState('');
+  const modelInfoRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to ModelInfo when modelData changes
+  useEffect(() => {
+    if (modelData && modelInfoRef.current) {
+      modelInfoRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [modelData]);
 
   const handleModelSubmit = async (link: string) => {
     setIsLoading(true);
@@ -86,7 +94,9 @@ const Calculator = () => {
       
       {modelData && (
         <div className="space-y-6">
-          <ModelInfo modelData={modelData} />
+          <div ref={modelInfoRef}>
+            <ModelInfo modelData={modelData} />
+          </div>
           <RequirementsDisplay requirementsData={requirementsData} />
         </div>
       )}

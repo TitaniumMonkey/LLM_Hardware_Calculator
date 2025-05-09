@@ -8,8 +8,20 @@ interface RequirementsDisplayProps {
   requirementsData: Requirements | null;
 }
 
+const getModelSizeCategory = (vram: number): string => {
+  if (vram <= 12) return 'Small Models';
+  if (vram <= 24) return 'Mid-Sized Models';
+  if (vram <= 80) return 'Large Models';
+  if (vram <= 200) return 'Very Large Models';
+  if (vram <= 400) return 'Massive Models';
+  return 'The Largest Models';
+};
+
 const RequirementsDisplay: React.FC<RequirementsDisplayProps> = ({ requirementsData }) => {
   if (!requirementsData) return null;
+
+  // Get the model size category based on VRAM
+  const modelSizeCategory = getModelSizeCategory(requirementsData.vramRequired);
 
   return (
     <div className="space-y-6 animate-fadeIn">
@@ -36,27 +48,20 @@ const RequirementsDisplay: React.FC<RequirementsDisplayProps> = ({ requirementsD
               <div className="w-full bg-slate-700 rounded-full h-2.5">
                 <div 
                   className="bg-gradient-to-r from-blue-600 to-indigo-500 h-2.5 rounded-full" 
-                  style={{ width: `${Math.min(100, (requirementsData.vramRequired / 24) * 100)}%` }}
+                  style={{ width: `${Math.min(100, (requirementsData.vramRequired / 1000) * 100)}%` }}
                 ></div>
               </div>
               <div className="flex justify-between mt-1 text-xs text-slate-500">
                 <span>0 GB</span>
-                <span>24 GB</span>
+                <span>1 TB</span>
               </div>
             </div>
             
             <div className="flex items-center">
-              {requirementsData.vramRequired > 24 ? (
-                <div className="flex items-center text-amber-400">
-                  <AlertTriangle className="h-4 w-4 mr-1" />
-                  <span className="text-sm">High memory requirement</span>
-                </div>
-              ) : (
-                <div className="flex items-center text-green-400">
-                  <CheckCircle className="h-4 w-4 mr-1" />
-                  <span className="text-sm">Standard requirement</span>
-                </div>
-              )}
+              <div className="flex items-center text-blue-400">
+                <CheckCircle className="h-4 w-4 mr-1" />
+                <span className="text-sm">{modelSizeCategory}</span>
+              </div>
             </div>
           </div>
           
@@ -76,27 +81,20 @@ const RequirementsDisplay: React.FC<RequirementsDisplayProps> = ({ requirementsD
               <div className="w-full bg-slate-700 rounded-full h-2.5">
                 <div 
                   className="bg-gradient-to-r from-blue-600 to-indigo-500 h-2.5 rounded-full" 
-                  style={{ width: `${Math.min(100, (requirementsData.storageRequired / 100) * 100)}%` }}
+                  style={{ width: `${Math.min(100, (requirementsData.storageRequired / 1000) * 100)}%` }}
                 ></div>
               </div>
               <div className="flex justify-between mt-1 text-xs text-slate-500">
                 <span>0 GB</span>
-                <span>100 GB</span>
+                <span>1 TB</span>
               </div>
             </div>
             
             <div className="flex items-center">
-              {requirementsData.storageRequired > 50 ? (
-                <div className="flex items-center text-amber-400">
-                  <AlertTriangle className="h-4 w-4 mr-1" />
-                  <span className="text-sm">Large storage requirement</span>
-                </div>
-              ) : (
-                <div className="flex items-center text-green-400">
-                  <CheckCircle className="h-4 w-4 mr-1" />
-                  <span className="text-sm">Standard requirement</span>
-                </div>
-              )}
+              <div className="flex items-center text-blue-400">
+                <CheckCircle className="h-4 w-4 mr-1" />
+                <span className="text-sm">{modelSizeCategory}</span>
+              </div>
             </div>
           </div>
         </div>
