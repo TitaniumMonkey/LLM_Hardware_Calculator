@@ -20,7 +20,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.18",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "globals": "^15.9.0",
@@ -31,6 +31,11 @@
     "vite": "^5.4.19"
   },
   "overrides": {
-    "esbuild": "^0.25.0"
+    "esbuild": "^0.25.0",
+    "glob": "^10.4.5",
+    "rimraf": "^5.0.5",
+    "inflight": "^2.0.0",
+    "@humanwhocodes/config-array": "@eslint/config-array@^1.0.0",
+    "@humanwhocodes/object-schema": "@eslint/object-schema@^1.0.0"
   }
 }
