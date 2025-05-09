@@ -1,7 +1,8 @@
 # LLM Hardware Calculator
 
 <p align="center">
-  <img src="https://i.imgur.com/IyFRPRy.png">
+  <img src="https://i.imgur.com/XRpvvDW.png">
+  <img src="https://i.imgur.com/Qslciss.png">
 </p>
 
 A modern web application that helps users calculate hardware requirements for running Large Language Models (LLMs) from Hugging Face or manual input. This tool provides accurate VRAM and storage requirements based on model parameters, quantization type, and advanced model settings.
