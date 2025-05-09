@@ -4,9 +4,11 @@ import { Search, Loader2 } from 'lucide-react';
 interface ModelInputProps {
   onSubmit: (link: string) => void;
   isLoading: boolean;
+  apiKey: string;
+  setApiKey: (key: string) => void;
 }
 
-const ModelInput: React.FC<ModelInputProps> = ({ onSubmit, isLoading }) => {
+const ModelInput: React.FC<ModelInputProps> = ({ onSubmit, isLoading, apiKey, setApiKey }) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -34,9 +36,16 @@ const ModelInput: React.FC<ModelInputProps> = ({ onSubmit, isLoading }) => {
 
   return (
     <div className="w-full bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-lg transition-all hover:shadow-blue-900/10">
-      <h2 className="text-xl font-semibold mb-4 text-slate-200">Model Information</h2>
+      <h2 className="text-xl font-semibold mb-4 text-slate-200">Hugging Face Model Fetch</h2>
       
       <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          type="password"
+          className="block w-full px-4 py-2 mb-2 bg-slate-950 border border-slate-800 rounded-lg text-slate-300"
+          placeholder="Enter Hugging Face API Key (optional, for private or accurate model info)"
+          value={apiKey}
+          onChange={e => setApiKey(e.target.value)}
+        />
         <div className="relative">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <Search className="h-5 w-5 text-slate-500" />

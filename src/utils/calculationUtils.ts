@@ -16,15 +16,26 @@ export function calculateRequirements(modelData: ModelData): Requirements {
   // Default to FP16 if quantization not specified
   const bytesPerParam = BYTES_PER_PARAMETER[modelData.quantization as keyof typeof BYTES_PER_PARAMETER] || 2;
   
-  // Calculate VRAM in GB (parameters * bytes per parameter / 1 billion)
-  // Add 20% overhead for KV cache, gradients, optimizer states
+  // Calculate base VRAM for model parameters
   const baseVram = (modelData.parameters * bytesPerParam) / 1_000_000_000;
-  const vramOverhead = 1.2; // 20% overhead
-  const vramRequired = Math.ceil(baseVram * vramOverhead);
   
-  // Calculate storage in GB
-  // Storage typically needs more space than just the raw model size
-  const storageRequired = Math.ceil(baseVram * 1.1); // 10% overhead for storage
+  // Calculate KV cache memory
+  const hiddenSize = modelData.hiddenSize || 4096;
+  const numLayers = modelData.numLayers || 32;
+  const contextLength = modelData.contextLength || 2048;
+  const batchSize = modelData.batchSize || 1;
+  
+  // KV cache calculation (2 * hidden_size * num_layers * context_length * batch_size * bytes_per_param)
+  const kvCacheVram = (2 * hiddenSize * numLayers * contextLength * batchSize * bytesPerParam) / 1_000_000_000;
+  
+  // Add overhead for gradients and optimizer states (typically 2x for Adam optimizer)
+  const optimizerOverhead = baseVram * 2;
+  
+  // Total VRAM required
+  const vramRequired = Math.ceil(baseVram + kvCacheVram + optimizerOverhead);
+  
+  // Calculate storage in GB (model size + 10% overhead)
+  const storageRequired = Math.ceil(baseVram * 1.1);
   
   // Determine recommended GPUs based on VRAM requirements
   let recommendedGpu = 'Not enough information';

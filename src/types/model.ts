@@ -7,6 +7,9 @@ export interface ModelData {
   quantization: string;
   architecture: string;
   contextLength: number;
+  hiddenSize?: number;
+  numLayers?: number;
+  batchSize?: number;
   license: string;
 }
 

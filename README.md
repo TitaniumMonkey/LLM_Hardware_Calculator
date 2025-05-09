@@ -1,17 +1,21 @@
 # LLM Hardware Calculator
 
-A modern web application that helps users calculate hardware requirements for running Large Language Models (LLMs) with an added feature that pulls the Hugging Face Token Card(if availible) from a hugging face URL to prefill the parameters. This tool provides accurate VRAM and storage requirements based on model parameters and quantization type.
+A modern web application that helps users calculate hardware requirements for running Large Language Models (LLMs) from Hugging Face or manual input. This tool provides accurate VRAM and storage requirements based on model parameters, quantization type, and advanced model settings.
 
+![LLM Hardware Calculator](https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)
 
 ## Features
 
-- 🔍 **Model Analysis**: Input any Hugging Face model link to analyze hardware requirements
-- 💾 **VRAM Calculator**: Accurate VRAM requirements based on model size and quantization
-- 💽 **Storage Estimation**: Calculate required disk space for model deployment
-- 🎮 **GPU Compatibility**: Check compatibility with common GPU models
-- 📊 **Visual Feedback**: Clear visual representation of resource requirements
-- 🎯 **Real-time Updates**: Instant calculations and feedback
-- 🎨 **Modern UI**: Sleek, dark theme with professional aesthetics
+- 🔍 **Hugging Face Model Fetch**: Enter any Hugging Face model link or identifier to automatically fetch model size, quantization type, and context length using the Hugging Face API (supports private models with your API key).
+- 🔑 **Hugging Face API Key Support**: Enter your Hugging Face API key for accurate/private model info fetching.
+- ✍️ **Manual Parameter Entry**: Manually enter model size, quantization type, and advanced parameters if the model cannot be fetched or for custom models.
+- 🧮 **Advanced Model Settings**: Optionally specify context length, hidden size, number of layers, and batch size for more accurate calculations.
+- 💾 **VRAM & Storage Calculator**: Calculates VRAM and storage requirements based on model size, quantization, and advanced settings.
+- 🎮 **GPU Compatibility**: Suggests compatible single and multi-GPU (2x, 4x, 8x) solutions, only showing the smallest valid combination for each GPU, and excludes redundant or impossible combos.
+- 🚫 **Incompatible GPU List**: Clearly lists GPUs that cannot run the model, after considering all valid single and multi-GPU options.
+- 📊 **Visual Feedback**: Clear, modern UI with visual representation of requirements and compatibility.
+- 🎨 **Modern UI**: Sleek, dark theme with professional aesthetics.
+- ⚡ **Real-time Updates**: Instant calculations and feedback as you enter or change parameters.
 
 ## Getting Started
 
@@ -23,34 +27,34 @@ A modern web application that helps users calculate hardware requirements for ru
 ### Installation
 
 1. Clone the repository:
-```bash
-git clone https://github.com/TitaniumMonkey/LLM_Hardware_Calculator.git
-```
+    ```bash
+    git clone https://github.com/TitaniumMonkey/LLM_Hardware_Calculator.git
+    ```
 
-2. Change Directories:
-```bash
-cd LLM_Hardware_Calculator
-```
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
 
-3. Install dependencies:
-```bash
-npm install
-```
-
-4. Start the development server:
-```bash
-npm run dev
-```
+3. Start the development server:
+    ```bash
+    npm run dev
+    ```
 
 ## Usage
 
-1. Visit the application in your browser
-2. Enter a Hugging Face model link (e.g., https://huggingface.co/meta-llama/Llama-2-7b)
-3. View the calculated hardware requirements:
+1. Visit the application in your browser.
+2. **To fetch from Hugging Face:**  
+   - Enter your Hugging Face API key (optional, but required for private or rate-limited models).
+   - Enter a Hugging Face model link (e.g., `https://huggingface.co/meta-llama/Llama-2-7b`).
+   - The calculator will fetch and display model size, quantization, and context length automatically.
+3. **To enter manually:**  
+   - Use the "Manual Parameters" section to specify model size, quantization type, and advanced settings.
+4. View the calculated hardware requirements:
    - VRAM requirements
    - Storage requirements
-   - Compatible GPUs
-   - Recommended hardware
+   - Compatible single and multi-GPU solutions
+   - Incompatible GPUs
 
 ## Technical Details
 
@@ -64,16 +68,18 @@ npm run dev
 
 ### Key Components
 
-- **Model Input**: Handles user input and validation
-- **Requirements Display**: Shows calculated hardware requirements
-- **GPU Compatibility**: Lists compatible and incompatible GPUs
-- **Calculation Engine**: Processes model information and determines requirements
+- **Model Input**: Handles Hugging Face URL/API key input and model info fetching.
+- **Manual Input**: Allows manual entry of all model and quantization parameters.
+- **Requirements Display**: Shows calculated hardware requirements.
+- **GPU Compatibility**: Lists compatible and incompatible GPUs, including multi-GPU solutions.
+- **Calculation Engine**: Processes model information and determines requirements, including advanced options.
 
 ### Calculations
 
 The calculator considers several factors:
-- Model parameters (size in billions)
-- Quantization type (FP16, INT8, GPTQ, etc.)
+- Model parameters (size in millions or billions)
+- Quantization type (FP16, FP32, INT8, INT4, GPTQ, BF16, etc.)
+- Advanced model settings (context length, hidden size, number of layers, batch size)
 - Overhead for KV cache and gradients
 - Storage requirements with safety margins
 
@@ -91,7 +97,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- Hugging Face for providing model information
+- Hugging Face for providing model information and API
 - The open-source community for inspiration and resources
 - Contributors and users who help improve the calculator
 
