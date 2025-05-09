@@ -1,8 +1,7 @@
 # LLM Hardware Calculator
 
-A modern web application that helps users calculate hardware requirements for running Large Language Models (LLMs) from Hugging Face. This tool provides accurate VRAM and storage requirements based on model parameters and quantization type.
+A modern web application that helps users calculate hardware requirements for running Large Language Models (LLMs) with an added feature that pulls the Hugging Face Token Card(if availible) from a hugging face URL to prefill the parameters. This tool provides accurate VRAM and storage requirements based on model parameters and quantization type.
 
-![LLM Hardware Calculator](https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)
 
 ## Features
 
@@ -28,12 +27,17 @@ A modern web application that helps users calculate hardware requirements for ru
 git clone https://github.com/TitaniumMonkey/LLM_Hardware_Calculator.git
 ```
 
-2. Install dependencies:
+2. Change Directories:
+```bash
+cd LLM_Hardware_Calculator
+```
+
+3. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Start the development server:
+4. Start the development server:
 ```bash
 npm run dev
 ```
