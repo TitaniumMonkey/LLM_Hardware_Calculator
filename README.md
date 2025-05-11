@@ -1,5 +1,7 @@
 # LLM Hardware Calculator
 
+**Try it now at:** [https://llm-vram-calc.titanium-monkey.com/](https://llm-vram-calc.titanium-monkey.com/)
+
 <p align="center">
   <img src="https://i.imgur.com/XRpvvDW.png">
   <img src="https://i.imgur.com/Qslciss.png">
