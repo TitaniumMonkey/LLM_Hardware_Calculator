@@ -18,7 +18,11 @@ function App() {
           <Calculator />
         </main>
         <footer className="w-full py-4 text-center text-slate-500 text-sm">
-          <p>© 2025 LLM Hardware Calculator</p>
+          <p>
+            © 2025 LLM VRAM Calculator |
+            <a href="https://github.com/TitaniumMonkey/LLM_Hardware_Calculator" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors"> https://github.com/TitaniumMonkey/LLM_Hardware_Calculator</a> |
+            Contact: <a href="mailto:tpierce@Titanium-Monkey.com" className="text-blue-400 hover:text-blue-300 transition-colors">tpierce@Titanium-Monkey.com</a>
+          </p>
         </footer>
       </div>
     </ThemeProvider>
